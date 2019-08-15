@@ -1,0 +1,519 @@
+
+/* CSS Document */
+	 body {
+      max-width: 100%;
+      overflow-x: hidden;
+	}
+	
+/*display*/
+	.block{
+	  display: block;
+	}
+	
+	.hide{
+	  display: none;
+	}
+/*end of display*/
+
+/*margins and padding*/
+	.main {
+	  padding: 15px 0px;
+	  margin: auto 4%;
+	}
+	
+	.page{
+	  padding-bottom:1% 1%;
+	  margin:1% 1%;
+	  border-radius: 4px;
+	  height: 80%;
+	}
+	
+	.right-margin{
+	  margin-right: 10%;
+	}
+	.left-margin{
+	  margin-left: 10%;
+	}
+	
+	.mid-margin{
+	  margin:1% 10%;
+	}
+	
+	.s-margin{
+	  margin:1% 5%;
+	}
+	
+	.mid-padding{
+	  padding:1% 10%;
+	}
+	
+	.s-padding{
+	  padding:1% 5%;
+	}
+	
+	.top{
+	  margin: -1% 0 -3% -3%;
+	}
+	
+	.separate-left{
+	  margin-right:2%;
+	}
+	
+	.separate-right{
+	  margin-left:2%;
+	}
+	
+	.s-margin{
+	  margin-left:0%;
+	  margin-right:%;
+	}
+/*end of margins and padding*/
+
+/*forms*/
+	.form-control {
+	  display: block;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  line-height: 1.5;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  margin-bottom:4%;
+	  margin-top:4%;
+	  width:100%;
+	  text-align: center;
+	}
+	
+	.form-in {
+	  display: inline;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  text-align: center;
+	}
+	
+	.form-block {
+	  display: block;
+	  padding: 6px 12px;
+	  font-size: 14px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  width:100%;
+	  margin-top: 1%;
+	  margin-bottom: 1%;
+	  text-align: center;
+	}
+	
+	.form{
+	  padding-bottom:2%;
+	  border: 2px solid transparent;
+	  border-radius: 4px;
+	  background-color: rgb(230,230,230); 
+	}
+	
+	.s-form{
+	  margin:1% 30%;
+	  padding:2%;
+	  background-color: #eee;
+	  border-radius: 5px;
+	}	
+	
+	.s-form .center-disign{
+	  padding: 20% 1%;
+	  height: 100px;
+	}	
+/*end of forms*/
+
+/*forms elements*/
+    select {
+	  text-align: center;
+	  text-align-last: center;
+	}
+	
+	input[type=text], input[type=date], select, textarea {
+	  width: 100%;
+	  padding: 12px;
+	  border: 1px solid #ccc;
+	  border-radius: 4px;
+	  resize: vertical;
+	}
+
+	label {
+	  padding: 12px 12px 12px 0;
+	  display: inline-block;
+	}
+
+	input[type=submit] {
+	  background-color: #4CAF50;
+	  color: white;
+	  padding: 12px 20px;
+	  border: none;
+	  border-radius: 4px;
+	  cursor: pointer;
+	  float: right;
+	}
+
+	input[type=submit]:hover {
+	  background-color: #45a049;
+	}
+	
+	.btn {
+	  display: inline-block;
+	  padding: 6px 12px;
+	  margin-bottom: 0;
+	  font-size: 14px;
+	  line-height: 1.5;
+	  border: 1px solid transparent;
+	  border-radius: 4px;
+	}
+/*end of forms elements*/
+	
+	
+/*width and height*/
+	.width-important{
+	  width:100%;
+	}
+	
+	.height-important{
+	  height:400px;
+	}
+	
+	.center-disign{
+	  padding: 20% 30%;
+	  height: 100px;
+	}
+/*end of width and height*/
+	
+/*background*/
+	.bg-test{
+	  background-color: green;
+	}
+
+	.bg-white{
+	  background-color: white;
+	}
+
+	.back-log{
+	  background: repeating-linear-gradient(rgba(190, 150, 150, 0.7),rgba(150, 190, 150, 0.7),rgba(150, 150, 190, 0.7)  7px);
+	}
+/*end background*/
+
+/*Alignment*/
+	.center {
+	  margin: 0;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(0, -50%)
+	}
+
+	.vertical-center {
+	  display: flex;
+	  flex-direction: row;
+	  align-items: center;
+	}
+
+	.horizontal-center {
+	  display: flex;
+	  flex-direction: row;
+	  justify-content: center;
+	}
+
+	.right{
+	  float: right;
+	}
+	
+	.left{
+	  float: left;
+	}
+	
+	.text-center{
+	  text-align: center;
+	}
+/*end of alignment*/
+	
+/*navigations*/
+	.menu{
+	  position: relative;
+	  width: 100%;
+	  z-index: 3;
+	}
+
+	.menu a{
+	  text-decoration: none;
+	}
+
+	.menu ul{
+	  border-radius: 20px;
+	  display: flex;
+	  padding-top: 20px;
+	  list-style: none;
+	  padding: 0px;
+	}
+
+	.menu ul li{
+	  width: 25%;
+	  line-height:20px; 
+	  padding:18px 0px; 
+	  text-align: center;
+	}
+
+    .menu ul li a{ 
+	  color: black;
+	  display: block;
+	  height: 100%;
+	  font-size: 24px;
+	  border-radius: 14px;
+    }
+
+    .menu ul li:hover{
+	  text-transform: uppercase;
+	  text-decoration: none;
+	  background-color: grey;
+	  border-radius: 14px;
+    }
+	
+    .menu ul li a:hover{
+	  color: pink;
+	  text-decoration: none;
+	  cursor: pointer;
+    }
+/*end navigations*/
+
+/*tables*/
+	.table {
+	  border-collapse: collapse;
+	  width: 80%;
+	  max-width: 100%;
+	  background-color: #fff;
+	}
+	
+	.table-bordered th, .table-bordered td {
+	  border: 1px solid #ddd;
+	}
+	
+	td{
+	  padding: 0.4%;
+	  margin:0.4%;
+	}
+	
+	th{
+	  font-weight: bold;
+	  text-align: center;
+	  text-align: center;
+	  background-color:#eee;
+	  padding: 12px;
+	}
+/*end tables*/
+
+/*end of columns*/
+	.col-25 {
+	  float: left;
+	  width: 25%;
+	  margin-top: 6px;
+	}
+
+	.col-75 {
+	  float: left;
+	  width: 75%;
+	  margin-top: 6px;
+	}
+/*end of columns*/
+
+/* Clear floats after the columns */
+	.interact:after {
+	  content: "";
+	  display: table;
+	  clear: both;
+	}
+	
+/*change mouse to pointer*/
+	.pointer {
+	  cursor: pointer;
+	}
+	
+/*end of mixed background, padding and margin*/
+	.descript{
+	  padding: 10px;
+	  margin: 15px;
+	  border:1px solid #009898;
+	  border-radius:4px;
+	  float: left;
+	  width: 27%;
+	  height:26%;
+	  overflow: hidden ;
+	}
+	
+	.descript h2{
+	  padding: 10px;
+	  background-color: green;
+	  border-radius:4px;
+	  text-align: center;
+	}	
+	
+	.env{
+	  margin: -1.3% -2%;
+	  border-radius: 5px;
+	  background-color: rgb(50,140,150);
+	}
+/*end of mixed background, padding and margin*/
+	
+	.undec a{
+	  text-decoration: none;
+	  color: black;
+	}
+
+/*medium screens*/
+   @media only screen and (max-width: 1200px) {
+ 
+	.descript{
+	  position: relative;
+	  padding: 5px;
+	  margin: 5px;
+	  border:1px solid #009898;
+	  border-radius:4px;
+	  float: left;
+	  width: 27%;
+	  height:26%;
+	}
+	
+	.descript h2{
+	  padding: 3px 5px;
+	  margin: 1px auto;  
+	}
+	
+	.main {
+	  padding: 5px 10px;
+	  margin: auto 3%;
+	}
+	
+	.sign .descript{
+	  padding: 5px;
+	  margin: 7px;
+	  border:1px solid transparent;
+	  border-radius:0px;
+	  width: 100%;
+	  height:auto;
+	  overflow: auto ;
+	}
+	
+	.s-form{
+	  margin:1% 20%;
+	  padding: 3%;
+	}
+	
+	.form{
+	  padding: 2%;
+	}
+	
+	.menu ul li{
+	  width: 35%;
+	}
+	
+	.center-disign{
+	  padding: 15% 23%;
+	  height: 10px;
+	}
+	
+	.table {
+	  width: 87%;
+	}
+   }
+/*end of medium screens*/
+   
+/*small screens*/
+   @media only screen and (max-width: 992px) {
+ 
+	.menu ul{
+		display: block;
+		text-align: center;
+	}
+	  
+	.menu ul li{
+	  width: 100%;
+	  padding: 5px 0px;
+	  height:5%;
+	}
+	 
+	.descript{
+	  padding: 5px;
+	  margin: 7px;
+	  border:1px solid transparent;
+	  border-radius:0px;
+	  width: 100%;
+	  height:auto;
+	  overflow: auto ;
+	}
+	
+	.descript h2{
+	  padding: 6px 4px;
+	}
+	
+	.main {
+	  padding: 5px 0px;
+	}
+	
+	.form{
+	  margin: 1%;
+	}
+	
+	.s-form{
+	  margin:3% 10%;
+	}
+	
+	.center-disign{
+	  padding: 10% 15%;
+	  height: 80px;
+	}
+	
+	.table {
+	  width: 90%;
+	}
+   }
+/*end of small screens*/
+   
+/*very small screens*/
+   @media only screen and (max-width: 600px) {
+	.col-25, .col-75, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+	}
+	
+	.form{
+	  margin: 1%;
+	}
+	
+	.s-form{
+	  margin:auto;
+	  padding: 4%;
+	}
+	
+	.table {
+	  width: 100%;
+	}
+   }
+/*end of very small screens*/
+   
+/*large screens*/
+   @media only screen and (min-width: 1200px) {
+ 
+	.page{
+	  border: 2px solid #999;
+	  background-color: #eee;
+	}
+	
+	.sign .descript{
+	  width: 45%;
+	}
+	
+	.center-disign .menu ul li{
+	  width: 35%;
+	}
+	
+	.form{
+	  padding-bottom:4%;
+	}
+   }
+/*end of large screens*/
+
+
