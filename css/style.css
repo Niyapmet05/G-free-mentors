@@ -192,6 +192,28 @@
 	.bg-white{
 	  background-color: white;
 	}
+	
+	.bg-red{
+	  background-color: #a00;
+	}
+
+	.back-log{
+	  background: repeating-linear-gradient(rgba(190, 150, 150, 0.7),rgba(150, 190, 150, 0.7),rgba(150, 150, 190, 0.7)  7px);
+	}
+/*end background*/
+	
+/*text color*/
+	.c-green{
+	  color: green;
+	}
+
+	.c-white{
+	  color: white;
+	}
+	
+	.c-red{
+	  color: #a00;
+	}
 
 	.back-log{
 	  background: repeating-linear-gradient(rgba(190, 150, 150, 0.7),rgba(150, 190, 150, 0.7),rgba(150, 150, 190, 0.7)  7px);
@@ -287,6 +309,9 @@
 	  max-width: 100%;
 	  background-color: #fff;
 	}
+#mentor .table {
+	  width: 100%;
+	}
 	
 	.table-bordered th, .table-bordered td {
 	  border: 1px solid #ddd;
@@ -316,6 +341,12 @@
 	.col-75 {
 	  float: left;
 	  width: 75%;
+	  margin-top: 6px;
+	}
+
+	.col-50 {
+	  float: left;
+	  width: 50%;
 	  margin-top: 6px;
 	}
 /*end of columns*/
@@ -357,10 +388,14 @@
 	  background-color: rgb(50,140,150);
 	}
 /*end of mixed background, padding and margin*/
-	
+
+/*links*/	
 	.undec a{
 	  text-decoration: none;
 	  color: black;
+	}
+	.undec{
+	  text-decoration: none;
 	}
 
 /*medium screens*/
@@ -423,6 +458,10 @@
    
 /*small screens*/
    @media only screen and (max-width: 992px) {
+	.res{
+	  overflow-x:scroll;
+	  overflow-y:hidden;
+	}
  
 	.menu ul{
 		display: block;
