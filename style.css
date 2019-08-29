@@ -11,7 +11,7 @@
 	}
 	
 	.hide{
-	  display: hidden;
+	  display: none;
 	}
 /*end of display*/
 
@@ -65,7 +65,7 @@
 	
 	.s-margin{
 	  margin-left:0%;
-	  margin-right:%;
+	  margin-right:0%;
 	}
 /*end of margins and padding*/
 
@@ -325,6 +325,7 @@
 	th{
 	  font-weight: bold;
 	  text-align: center;
+	  text-align: center;
 	  background-color:#eee;
 	  padding: 12px;
 	}
@@ -350,6 +351,21 @@
 	}
 /*end of columns*/
 
+/*positioning*/
+.fix-top{
+	position: sticky;
+	top:0;
+}
+.footer{
+	background-color: #eee;
+	text-align: center;
+	padding: 0.3%;
+	position: fixed;
+	bottom:0;
+	width:100%
+	}
+/*positioning*/
+
 /* Clear floats after the columns */
 	.interact:after {
 	  content: "";
@@ -362,7 +378,7 @@
 	  cursor: pointer;
 	}
 	
-/*end of mixed background, padding and margin*/
+/* mixed background, padding and margin*/
 	.descript{
 	  padding: 10px;
 	  margin: 15px;
@@ -396,7 +412,13 @@
 	.undec{
 	  text-decoration: none;
 	}
+/*end of link*/
+/*ids*/
 
+#admin .table {
+	width: 100%;
+  }
+/*end of ids*/
 /*medium screens*/
    @media only screen and (max-width: 1200px) {
  
@@ -512,10 +534,11 @@
    
 /*very small screens*/
    @media only screen and (max-width: 600px) {
-	.col-25, .col-75, input[type=submit] {
+	.col-25, .col-50, .col-75, input[type=submit] {
       width: 100%;
       margin-top: 0;
 	}
+
 	
 	.form{
 	  margin: 1%;
