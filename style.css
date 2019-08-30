@@ -308,8 +308,10 @@
 	  width: 80%;
 	  max-width: 100%;
 	  background-color: #fff;
+	  overflow-x: auto;
 	}
-#mentor .table {
+	
+	#mentor .table {
 	  width: 100%;
 	}
 	
@@ -318,6 +320,7 @@
 	}
 	
 	td{
+	  white-space: nowrap;
 	  padding: 0.4%;
 	  margin:0.4%;
 	}
@@ -364,7 +367,7 @@
 	bottom:0;
 	width:100%
 	}
-/*positioning*/
+/*end of positioning*/
 
 /* Clear floats after the columns */
 	.interact:after {
@@ -550,7 +553,8 @@
 	}
 	
 	.table {
-	  width: 100%;
+	  display:block;
+	  width:fit-content;
 	}
    }
 /*end of very small screens*/
