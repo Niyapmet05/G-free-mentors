@@ -91,5 +91,35 @@ class UserController {
     })
   //end of signUp
   }
+
+  //Login a user
+  static async login( req, res) {
+    //forbdding important fields to be empty
+    if(!req.body.email) {
+      return res.status(400).josn({
+        success: 'false',
+        message: 'email is required'
+      });
+    } else if(!req.body.password) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'password is required'
+      });
+    }
+    const data = {
+    }
+    db.push(data);
+
+    //defining token
+    const token = jwt.sign({ email: data.email, password: data.password }, process.env.KEY, {
+      // expires in 24 hours
+      expiresIn: 86400, 
+    })
+    return res.status(200).json({
+      status:  200,
+      message: 'User is successfully logged in',
+      token
+    })
+  };
 }
 export default UserController;//for external use
