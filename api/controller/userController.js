@@ -171,7 +171,7 @@ class UserController {
   //get all mentors
   static async getAllMentors(req, res) {
     db.forEach((user) => {
-      if (user.role === "mentee") {
+      if (user.role === "mentor") {
         res.status(200).json({
           status: '200',
           user
@@ -192,6 +192,24 @@ class UserController {
        console.log(error);
     }
   }
+
+  //get a specific mentor
+  static async getMentor(req, res) {
+    const id = parseInt(req.params.mentorId, 10);
+    db.map((data) => {
+      if (data.id === id) {
+        return res.status(200).json({
+          status: 200,
+          message: 'user retrieved successfully',
+          data,
+        });
+      } 
+  });
+   return res.status(404).send({
+     success: 'false',
+     message: 'user does not exist',
+    });
+  };
 
 }
 export default UserController;//for external use
