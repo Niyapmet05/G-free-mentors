@@ -12,7 +12,8 @@ const users =  [
     address: "Kigali",
     bio: "engineer",
     occupation: "developer",
-    expertise: "high"
+    expertise: "high",
+    role:"mentee"
   },
   {
     id:2,
@@ -26,7 +27,8 @@ const users =  [
     address: "Kigali",
     bio: "engineer",
     occupation: "environmental",
-    expertise: "world class"
+    expertise: "world class",
+    role:"mentor"
   },
   { 
     id:3,
@@ -40,7 +42,8 @@ const users =  [
     address: "Kigali",
     bio: "engineer",
     occupation: "developer",
-    expertise: "middle"
+    expertise: "middle",
+    role:"mentee"
   },
 ];
 

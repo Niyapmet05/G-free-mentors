@@ -60,7 +60,7 @@ class UserController {
     
     //Defining values to display confirming their entry
     const data = {
-      message: "User created successfully",
+      Id:db.length+1,
       FirstName:req.body.firstName,
       LastName:req.body.lastName,
       Sex:req.body.sex,
@@ -69,7 +69,7 @@ class UserController {
       Occupation:req.body.occupation,
       Experience:req.body.experience,
       Address:req.body.address,
-      Expertise:req.body.expertise,
+      role:req.body.role,
       Bio:req.body.bio
     }
  
@@ -91,6 +91,8 @@ class UserController {
     })
   //end of signUp
   }
+
+
 
   //Login a user
   static async login( req, res) {
@@ -121,5 +123,50 @@ class UserController {
       token
     })
   };
+  
+  //Change a user to a mentor.
+  static async changeToMentor( req, res){
+    const id = parseInt(req.params.userId, 10);
+    let dataFound;
+    let itemIndex;
+    db.map((data, index) => {
+      if (data.id === id) {
+        dataFound = data;
+        itemIndex = index;
+      }
+    });
+
+    if (!dataFound) {
+      return res.status(404).json({
+        success: 'false',
+        message: 'user not found',
+      });
+    }
+
+    const data = {
+      id: dataFound.id,
+      lastName: req.body.lastName || dataFound.lastName,
+      firstName: req.body.firstName || dataFound.firstName,
+      email: req.body.email || dataFound.email,
+      age: req.body.age || dataFound.age,
+      sex: req.body.sex || dataFound.sex,
+      experience: req.body.experience || dataFound.experience,
+      address: req.body.address || dataFound.address,
+      bio: req.body.bio || dataFound.bio,
+      occupation: req.body.occupation || dataFound.occupation,
+      expertise: req.body.expertise || dataFound.expertise,
+      role: "mentor"
+    };
+
+    db.splice(itemIndex, 1, data);
+
+    return res.status(201).json({
+      status: 201,
+      message: 'User account changed to mentor',
+      token:req.headers.token,
+      data,
+    });
+  };
+
 }
 export default UserController;//for external use
