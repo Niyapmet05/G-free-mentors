@@ -19,4 +19,7 @@ router.get('/GET/mentors', token, db.getAllMentors);
 //Get all users
 router.get('/GET/users', token, db.getAllUsers);
 
+//Get all mentors
+router.get('/GET/mentors/:mentorId', token, db.getMentor);
+
 export default router;
