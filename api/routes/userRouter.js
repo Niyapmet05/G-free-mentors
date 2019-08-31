@@ -26,4 +26,7 @@ router.get('/GET/mentors/:mentorId', token, db.getMentor);
 //create session
 router.post('/POST/sessions', token, sess.createMentoshipReq);
 
+//create session
+router.patch('/PATCH/sessions/:sessionId/accept', token, sess.mentorAccept);
+
 export default router;
