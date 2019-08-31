@@ -1,6 +1,7 @@
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import db from '../models/db';
+import sess from '../models/sessions';
 
 dotenv.config();
 
@@ -200,16 +201,51 @@ class UserController {
       if (data.id === id) {
         return res.status(200).json({
           status: 200,
-          message: 'user retrieved successfully',
+          message: 'mentor retrieved successfully',
           data,
         });
       } 
   });
    return res.status(404).send({
      success: 'false',
-     message: 'user does not exist',
+     message: 'mentor does not exist',
     });
   };
 
+  //create a mentorship request session
+  static async createMentoshipReq( req, res) {
+    //forbdding important fields to be empty
+    if(!req.body.mentorId) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'mentorId name field cannot be empty'
+      })
+
+    } else if(!req.body.questions) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'questions name field cannot be empty'
+      })
+
+    }
+    
+    //Defining values to display confirming their entry
+    const data = {
+      sessionId:sess.length+1,
+      mentorId:req.body.mentorId,
+      menteeId:req.body.menteeId,
+      questions:req.body.questions,
+      menteeEmail:req.body.email,
+      status:req.body.status
+    }
+    
+    //returning values
+    return res.status(201).json({
+      status:  201,
+      message: 'User created successfully', 
+      token:req.headers.token,
+      data
+    })
+  };
 }
 export default UserController;//for external use
