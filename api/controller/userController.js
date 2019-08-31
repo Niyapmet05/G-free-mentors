@@ -168,5 +168,30 @@ class UserController {
     });
   };
 
+  //get all mentors
+  static async getAllMentors(req, res) {
+    db.forEach((user) => {
+      if (user.role === "mentee") {
+        res.status(200).json({
+          status: '200',
+          user
+        });
+      }
+    })
+ }
+
+   //get all users
+   static async getAllUsers(req, res) {
+    try {
+      res.status(200).json({
+        status: 200,
+        token:req.headers.token,
+        data: db
+      });
+    }catch (error) {
+       console.log(error);
+    }
+  }
+
 }
 export default UserController;//for external use
