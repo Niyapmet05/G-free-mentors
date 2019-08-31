@@ -248,6 +248,7 @@ class UserController {
     })
   };
 
+  //accept mentorship session request
   static async mentorAccept( req, res){
     const id = parseInt(req.params.sessionId, 10);
     let dataFound;
@@ -286,6 +287,43 @@ class UserController {
     return res.status(201).json({
       status: 201,
       message: 'mentorship session request accepted',
+      token:req.headers.token,
+      data,
+    });
+  };
+
+  
+  //accept mentorship session request
+  static async mentorReject( req, res){
+    const id = parseInt(req.params.sessionId, 10);
+    let dataFound;
+    let itemIndex;
+    db.map((data, index) => {
+      if (data.id === id) {
+        dataFound = data;
+        itemIndex = index;
+      }
+    });
+
+    if (!dataFound) {
+      return res.status(404).json({
+        success: 'false',
+        message: 'session not found',
+      });
+    }
+
+    const data = {
+      sessionId: dataFound.id,
+      mentorId: req.body.mentorId || dataFound.mentorId,
+      questions: req.body.questions || dataFound.questions,
+      status: "reject"
+    };
+
+    sess.splice(itemIndex, 1, data);
+
+    return res.status(201).json({
+      status: 201,
+      message: 'mentorship session request rejected',
       token:req.headers.token,
       data,
     });
