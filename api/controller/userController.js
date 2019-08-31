@@ -247,5 +247,49 @@ class UserController {
       data
     })
   };
+
+  static async mentorAccept( req, res){
+    const id = parseInt(req.params.sessionId, 10);
+    let dataFound;
+    let itemIndex;
+    db.map((data, index) => {
+      if (data.id === id) {
+        dataFound = data;
+        itemIndex = index;
+      }
+    });
+
+    if (!dataFound) {
+      return res.status(404).json({
+        success: 'false',
+        message: 'session not found',
+      });
+    }
+
+    const data = {
+      sessionId: dataFound.id,
+      mentorId: req.body.mentorId || dataFound.mentorId,
+      questions: req.body.questions || dataFound.questions,
+      status: "accept"
+      /*email: req.body.email || dataFound.email,
+      age: req.body.age || dataFound.age,
+      sex: req.body.sex || dataFound.sex,
+      experience: req.body.experience || dataFound.experience,
+      address: req.body.address || dataFound.address,
+      bio: req.body.bio || dataFound.bio,
+      occupation: req.body.occupation || dataFound.occupation,
+      expertise: req.body.expertise || dataFound.expertise,*/
+    };
+
+    sess.splice(itemIndex, 1, data);
+
+    return res.status(201).json({
+      status: 201,
+      message: 'mentorship session request accepted',
+      token:req.headers.token,
+      data,
+    });
+  };
+
 }
 export default UserController;//for external use
