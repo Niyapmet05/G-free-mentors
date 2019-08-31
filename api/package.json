@@ -29,6 +29,7 @@
     "chai-http": "^4.3.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "swagger-ui-express": "^4.0.7"
   }
 }
