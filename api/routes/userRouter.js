@@ -23,10 +23,13 @@ router.get('/GET/users', token, db.getAllUsers);
 //Get all mentors
 router.get('/GET/mentors/:mentorId', token, db.getMentor);
 
-//create session
+//create  mentorship session request
 router.post('/POST/sessions', token, sess.createMentoshipReq);
 
-//create session
+//accept mentorship session request
 router.patch('/PATCH/sessions/:sessionId/accept', token, sess.mentorAccept);
+
+//reject mentorship session request
+router.patch('/PATCH/sessions/:sessionId/reject', token, sess.mentorReject);
 
 export default router;
