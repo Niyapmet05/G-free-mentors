@@ -4,8 +4,11 @@
   "description": "",
   "main": "hello.js",
   "scripts": {
-    "test": "mocha --require @babel/register @babel/polyfill test/test.js",
-    "start": "nodemon app.js --exec babel-node --"
+    "test": "mocha --require @babel/register test/test.js",
+    "start": "nodemon app.js --exec babel-node --",
+    "coverage": "npm run test && nyc report --reporter=text-lcov | coveralls",
+    "cover": "set NODE_ENV=test&& istanbul cover ./node_modules/mocha/bin/_mocha -- --require  @babel/register test/test.js",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "author": "Aphrodis",
   "license": "ISC",
