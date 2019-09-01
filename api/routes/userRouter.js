@@ -32,4 +32,10 @@ router.patch('/PATCH/sessions/:sessionId/accept', token, sess.mentorAccept);
 //reject mentorship session request
 router.patch('/PATCH/sessions/:sessionId/reject', token, sess.mentorReject);
 
+//Get user sessions
+router.get('/GET/sessions', token, sess.getUserSessions);
+
+//Get mentor sessions
+router.get('/GET/sessions', token, sess.getMentorSessions);
+
 export default router;
