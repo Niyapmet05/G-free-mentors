@@ -284,7 +284,7 @@ class UserController {
     });
   };
 
-  //accept mentorship session request
+  //reject mentorship session request
     static async mentorReject( req, res){
       const id = parseInt(req.params.sessionId, 10);
       let dataFound;
@@ -343,6 +343,56 @@ class UserController {
       console.log(error);
     }
   }
+
+  
+  //review session
+  static async SessionReview( req, res){
+    const id = parseInt(req.params.sessionId, 10);
+    let dataFound;
+    let itemIndex;
+    db.map((data, index) => {
+      if (data.id === id) {
+        dataFound = data;
+        itemIndex = index;
+      }
+    });
+
+    if (!dataFound) {
+      return res.status(404).json({
+        success: 'false',
+        message: 'session not found',
+      });
+    }
+
+    if(!req.body.score) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'score is required'
+      })
+
+    }else if(!req.body.remark) {
+      return res.status(400).json({
+        success: 'false',
+        message: 'remark is required'
+      })
+    }
+    
+    const data = {
+      sessionId: dataFound.id,
+      mentorId: req.body.mentorId || dataFound.mentorId,
+      score: req.body.score || dataFound.score,
+      remark: req.body.remark || dataFound.remark,
+      menteeFullName: req.body.firstName +" "+ req.body.lastName || dataFound.firstName +" "+ dataFound.lastName
+    };
+
+    sess.splice(itemIndex, 1, data);
+
+    return res.status(201).json({
+      status: 201,
+      data,
+    });
+  };
+
 
 }
 export default UserController;//for external use
