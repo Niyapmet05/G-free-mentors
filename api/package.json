@@ -4,8 +4,11 @@
   "description": "",
   "main": "hello.js",
   "scripts": {
-    "test": "mocha --require @babel/register @babel/polyfill test/test.js",
-    "start": "nodemon app.js --exec babel-node --"
+    "test": "mocha --require @babel/register test/test.js",
+    "start": "nodemon app.js --exec babel-node --",
+    "coverage": "npm run test && nyc report --reporter=text-lcov | coveralls",
+    "cover": "set NODE_ENV=test&& istanbul cover ./node_modules/mocha/bin/_mocha -- --require  @babel/register test/test.js",
+    "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
   },
   "author": "Aphrodis",
   "license": "ISC",
@@ -29,6 +32,7 @@
     "chai-http": "^4.3.0",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "swagger-ui-express": "^4.0.7"
   }
 }
