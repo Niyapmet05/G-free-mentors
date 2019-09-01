@@ -272,14 +272,6 @@ class UserController {
       mentorId: req.body.mentorId || dataFound.mentorId,
       questions: req.body.questions || dataFound.questions,
       status: "accept"
-      /*email: req.body.email || dataFound.email,
-      age: req.body.age || dataFound.age,
-      sex: req.body.sex || dataFound.sex,
-      experience: req.body.experience || dataFound.experience,
-      address: req.body.address || dataFound.address,
-      bio: req.body.bio || dataFound.bio,
-      occupation: req.body.occupation || dataFound.occupation,
-      expertise: req.body.expertise || dataFound.expertise,*/
     };
 
     sess.splice(itemIndex, 1, data);
@@ -292,7 +284,6 @@ class UserController {
     });
   };
 
-  
   //accept mentorship session request
   static async mentorReject( req, res){
     const id = parseInt(req.params.sessionId, 10);
@@ -328,6 +319,19 @@ class UserController {
       data,
     });
   };
+
+  //get users sessions
+  static async getUserSessions(req, res) {
+   try {
+     res.status(200).json({
+       status: 200,
+       token:req.headers.token,
+       data: sess
+     });
+   }catch (error) {
+      console.log(error);
+   }
+ }
 
 }
 export default UserController;//for external use
