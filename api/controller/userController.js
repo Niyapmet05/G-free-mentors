@@ -1,3 +1,4 @@
+import "@babel/polyfill";
 import dotenv from 'dotenv';
 import jwt from 'jsonwebtoken';
 import db from '../models/db';
@@ -192,7 +193,7 @@ class UserController {
     }catch (error) {
        console.log(error);
     }
-  }
+   }
 
   //get a specific mentor
   static async getMentor(req, res) {
@@ -343,8 +344,7 @@ class UserController {
       console.log(error);
     }
   }
-
-  
+ 
   //review session
   static async SessionReview( req, res){
     const id = parseInt(req.params.sessionId, 10);
@@ -393,6 +393,32 @@ class UserController {
     });
   };
 
+  // delete sessions
+  static async deleteSes(req, res) {
+    const id = parseInt(req.params.sessionId, 10);
+    /*try {
+      res.status(200).json({
+        status: 200,
+        data: sess
+      });
+    }catch (error) {
+      console.log(error);
+    }*/
+    db.map((data, index) => {
+      if (data.id === id) {
+         sess.splice(index, 1);
+         return res.status(200).send({
+           success: 'true',
+           message: 'session deleted successfuly',
+         });
+      }
+    });
+
+      return res.status(404).send({
+        success: 'false',
+        message: 'session not found',
+      });
+  }
 
 }
 export default UserController;//for external use

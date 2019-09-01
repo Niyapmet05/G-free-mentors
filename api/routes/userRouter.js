@@ -6,39 +6,42 @@ import token from '../middleware/token';
 const router = Router();
 
 //sign up
-router.post('/POST/auth/signup', db.signUp);
+router.post('/auth/signup', db.signUp);
 
 //sign in
-router.post('/POST/auth/signin', token, db.login);
+router.post('/auth/signin', token, db.login);
 
 //change a user to amentor
-router.patch('/PATCH/user/:userId', token, db.changeToMentor);
+router.patch('/user/:userId', token, db.changeToMentor);
 
 //Get all mentors
-router.get('/GET/mentors', token, db.getAllMentors);
+router.get('/mentors', token, db.getAllMentors);
 
 //Get all users
-router.get('/GET/users', token, db.getAllUsers);
+router.get('/users', token, db.getAllUsers);
 
 //Get all mentors
-router.get('/GET/mentors/:mentorId', token, db.getMentor);
+router.get('/mentors/:mentorId', token, db.getMentor);
 
 //create  mentorship session request
-router.post('/POST/sessions', token, sess.createMentoshipReq);
+router.post('/sessions', token, sess.createMentoshipReq);
 
 //accept mentorship session request
-router.patch('/PATCH/sessions/:sessionId/accept', token, sess.mentorAccept);
+router.patch('/sessions/:sessionId/accept', token, sess.mentorAccept);
 
 //reject mentorship session request
-router.patch('/PATCH/sessions/:sessionId/reject', token, sess.mentorReject);
+router.patch('/sessions/:sessionId/reject', token, sess.mentorReject);
 
 //Get user sessions
-router.get('/GET/sessions', token, sess.getUserSessions);
+router.get('/sessions', token, sess.getUserSessions);
 
 //Get mentor sessions
-router.get('/GET/sessions', token, sess.getMentorSessions);
+router.get('/sessions', token, sess.getMentorSessions);
 
 //accept mentorship session request
-router.post('/POST/sessions/:sessionId/review', token, sess.SessionReview);
+router.post('/sessions/:sessionId/review', token, sess.SessionReview);
+
+//delete session
+router.delete('/sessions/:sessionId/review', token, sess.deleteSes);
 
 export default router;

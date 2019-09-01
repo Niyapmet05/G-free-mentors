@@ -7,11 +7,11 @@ const baseUrl = '/api/v1';
 chai.use(chaiHttp);
 chai.should();
 describe('Sign Up', () => {
-  describe('POST /api/v1/users', () => {
+  describe('POST /api/v1/auth/signup', () => {
     // test 3
     it('should display \'Sorry, this account already exists\'', (done) => {
       chai.request(app)
-        .post(`${baseUrl}/users`)
+        .post(`${baseUrl}/auth/signup`)
         .send({
           id:1,
           firstName: "Aphrodis",
