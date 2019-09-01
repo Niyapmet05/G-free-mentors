@@ -258,7 +258,7 @@
 	.menu{
 	  position: relative;
 	  width: 100%;
-	  z-index: 3;
+	  z-index: 999;
 	}
 
 	.menu a{
@@ -391,6 +391,7 @@
 	  width: 27%;
 	  height:26%;
 	  overflow: hidden ;
+	  z-index:0;
 	}
 	
 	.descript h2{
