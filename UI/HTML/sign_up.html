@@ -1,0 +1,60 @@
+<!DOCTYPE>
+<html>
+  <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SIGN UP</title>
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
+  </head>
+  <body class="">
+    <div class="env">
+      <div class="menu">
+		<ul>
+		  <li><a href="sign_in.html">Sign in </a></li>
+		  <li><a href="sign_up.html">Sign up </a></li>
+		  <li><a href="view_mentors.html">View mentors </a></li>
+		  <li><a href="specific_mentor.html">Specific mentor </a></li>
+		  <li><a href="mentorship_session.html">Session with mentor </a></li>
+		  <!-- <li><a href="#">Sign out </a></li> -->
+		</ul>
+      </div>
+    </div>
+    <form class="form">
+	  <div class="mid-margin">
+	    <div class="text-center"><h1>Complete the below form to register </h1></div>
+	    <div class="s-form">
+		  <div >
+		    <label>First Name </Label><input type="text" class="form-block" name="first_name"  autocomplete="off" required />
+		  </div>
+		  <div>
+		    <label>Last name </Label><input type="text" class="form-block" name="last_name" placeholder="" required />
+		  </div>
+		  <div>
+		    <label>select sex</Label><select class="form-block"><option></option><option>Male</option><option>Female</option></select>
+		  </div>
+		  <div>
+		    <label>Date of Birth </Label><input type="date" class="form-block" name="DOB" placeholder="" required />
+		  </div>
+		  <div>
+		    <label>select type</Label><select class="form-block"><option></option><option>Admin</option><option>Mentor</option><option>User</option></select>
+		  </div>
+		  <div >
+		    <label>Phone number</Label><input type="tel" class="form-block" name="phone_number" pattern="[0-9]{3}" required />
+		  </div>
+		  <div >
+		    <label>Username</Label><input type="text" class="form-block" name="txt_username" placeholder="" autocomplete="off" required />
+		  </div>
+		  <div>
+		    <label>Password </Label><input type="password" class="form-block" name="txt_password" placeholder="" required />
+		  </div>
+		  <div>
+		    <button type="submit" class="btn form-block bg-test pointer" name="btn-login" > Sign up </button>
+		  </div>
+	    </div>
+	  </div>
+    </form>
+	
+	<footer class="footer">
+	  <p>&copy; 2019 Aphrodis . All Rights Reserved</p>	
+	</footer>
+  </body>
+</html>
