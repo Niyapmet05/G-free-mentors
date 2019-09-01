@@ -333,18 +333,5 @@ class UserController {
    }
  }
 
- //get users sessions
-  static async getMentorSessions(req, res) {
-    try {
-      res.status(200).json({
-        status: 200,
-        token:req.headers.token,
-        data: sess
-      });
-    }catch (error) {
-      console.log(error);
-    }
-  }
-
 }
 export default UserController;//for external use
