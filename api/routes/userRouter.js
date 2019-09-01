@@ -9,7 +9,7 @@ const router = Router();
 router.post('/POST/auth/signup', db.signUp);
 
 //sign in
-router.post('/POST/auth/signin', db.login);
+router.post('/POST/auth/signin', token, db.login);
 
 //change a user to amentor
 router.patch('/PATCH/user/:userId', token, db.changeToMentor);
@@ -37,5 +37,8 @@ router.get('/GET/sessions', token, sess.getUserSessions);
 
 //Get mentor sessions
 router.get('/GET/sessions', token, sess.getMentorSessions);
+
+//accept mentorship session request
+router.post('/POST/sessions/:sessionId/review', token, sess.SessionReview);
 
 export default router;
