@@ -9,7 +9,7 @@ chai.should();
 describe('Sign Up', () => {
   describe('POST /api/v1/auth/signup', () => {
     // test 3
-    it('should display \'Sorry, this account already exists\'', (done) => {
+    it('should display \'Sorry, not registed\'', (done) => {
       chai.request(app)
         .post(`${baseUrl}/auth/signup`)
         .send({
