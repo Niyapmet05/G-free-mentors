@@ -1,8 +1,15 @@
 
 /* CSS Document */
-	 body {
+	 body{
       max-width: 100%;
-      overflow-x: hidden;
+	  overflow-x: hidden;
+	  color:rgba(23, 16, 49, 0.87);
+	}
+	a:hover{
+		color: rgb(0,0,190);
+	}
+	img{
+		border-radius: 5%;
 	}
 	
 /*display*/
@@ -13,6 +20,9 @@
 	.hide{
 	  display: none;
 	}
+	.hidden{
+		visibility: hidden;
+	  }
 /*end of display*/
 
 /*margins and padding*/
@@ -66,6 +76,10 @@
 	.s-margin{
 	  margin-left:0%;
 	  margin-right:0%;
+	}
+
+	.padding{
+		padding: 2%;
 	}
 /*end of margins and padding*/
 
@@ -154,7 +168,7 @@
 	}
 
 	input[type=submit]:hover {
-	  background-color: #45a049;
+	  background-color: #253d26;
 	}
 	
 	.btn {
@@ -182,6 +196,11 @@
 	  padding: 20% 30%;
 	  height: 100px;
 	}
+	.title{
+		width: 75%;
+		float: left;
+		text-align: center
+	}
 /*end of width and height*/
 	
 /*background*/
@@ -190,7 +209,7 @@
 	}
 
 	.bg-white{
-	  background-color: white;
+	  background-color: #888;
 	}
 	
 	.bg-red{
@@ -274,7 +293,7 @@
 	}
 
 	.menu ul li{
-	  width: 25%;
+	  width: 35%;
 	  line-height:20px; 
 	  padding:18px 0px; 
 	  text-align: center;
@@ -299,7 +318,41 @@
 	  color: pink;
 	  text-decoration: none;
 	  cursor: pointer;
-    }
+	}
+
+  .nav a{
+	text-decoration: none;
+  }
+
+  .nav ul{
+	border-radius: 20px;
+  	display: flex;
+	list-style: none;
+  }
+
+  .nav ul li{
+  width: 30%;
+	line-height:20px; 
+	padding:5px 5px; 
+	text-align: center;
+  }
+
+  .nav ul li a{ 
+	color: black;
+	display: block;
+	border-radius: 14px;
+  }
+
+  .nav ul li:hover{
+	text-decoration: none;
+	border-radius: 14px;
+  }
+  
+  .nav ul li a:hover{
+	color: blue;
+	text-decoration: none;
+	cursor: pointer;
+  }
 /*end navigations*/
 
 /*tables*/
@@ -332,9 +385,26 @@
 	  background-color:#eee;
 	  padding: 12px;
 	}
+	
+	.res{
+	  overflow-x:scroll;
+	  overflow-y:hidden;
+	}
+ 
 /*end tables*/
 
 /*end of columns*/
+	.col-10 {
+		width: 100px;
+		margin-top: 6px;
+		cursor: pointer
+	  }
+	  .col-20 {
+		  width: 50%;
+		  margin-top: 6px;
+		  cursor: pointer
+		}
+
 	.col-25 {
 	  float: left;
 	  width: 25%;
@@ -360,11 +430,15 @@
 	top:0;
 }
 .footer{
-	background-color: #eee;
+	background-color:#666;
+	color: white;
 	text-align: center;
-	padding: 0.3%;
-	position: sticky;
+	position: fixed;
 	bottom:0;
+	left:0;
+	right: 0;
+	margin-top: 0;
+	padding-top: 0;
 	width:100%
 	}
 /*end of positioning*/
@@ -374,8 +448,10 @@
 	  content: "";
 	  display: table;
 	  clear: both;
+	}	
+	.clear{
+		clear:both
 	}
-	
 /*change mouse to pointer*/
 	.pointer {
 	  cursor: pointer;
@@ -401,9 +477,9 @@
 	}	
 	
 	.env{
-	  margin: -1.3% -2%;
-	  border-radius: 5px;
-	  background-color: rgb(50,140,150);
+		left: 0;
+		right: 0;
+		background-color: rgb(50,140,150);
 	}
 /*end of mixed background, padding and margin*/
 
@@ -420,6 +496,9 @@
 
 #admin .table {
 	width: 100%;
+  }
+  #about nav ul li{
+	  width:50%;
   }
 /*end of ids*/
 /*medium screens*/
@@ -469,6 +548,10 @@
 	  width: 35%;
 	}
 	
+	
+	#about menu ul li{
+		width:50%;
+	}
 	.center-disign{
 	  padding: 15% 23%;
 	  height: 10px;
@@ -477,27 +560,17 @@
 	.table {
 	  width: 87%;
 	}
+	
+	.title{
+		width: 50%;
+		float: left;
+		text-align: center
+	}
    }
 /*end of medium screens*/
    
 /*small screens*/
    @media only screen and (max-width: 992px) {
-	.res{
-	  overflow-x:scroll;
-	  overflow-y:hidden;
-	}
- 
-	.menu ul{
-		display: block;
-		text-align: center;
-	}
-	  
-	.menu ul li{
-	  width: 100%;
-	  padding: 5px 0px;
-	  height:5%;
-	}
-	 
 	.descript{
 	  padding: 5px;
 	  margin: 7px;
@@ -536,13 +609,45 @@
 /*end of small screens*/
    
 /*very small screens*/
-   @media only screen and (max-width: 600px) {
+   @media only screen and (max-width: 700px) {
 	.col-25, .col-50, .col-75, input[type=submit] {
       width: 100%;
-      margin-top: 0;
+	  margin-top: 0;
+	  display: block
+	}
+	.s-col-25,.s-col-50,.s-col-75{
+		clear: both;
 	}
 
+	.nav ul{
+		display: block;
+	}
 	
+	.menu ul{
+		display: block;
+	}
+	  
+	.menu ul li{
+	  width: 100%;
+	  padding: 5px 0px;
+	  height:5%;
+	}
+	.nav ul{
+		width: 100%;
+		text-align: center;
+	}
+		
+	.nav ul li{
+		width: 100%;
+		padding: 5px 0px;
+		height:5%;
+	}
+	 
+	.title{
+		display: block;
+		width: 100%;
+	}
+
 	.form{
 	  margin: 1%;
 	}
@@ -579,6 +684,13 @@
 	  padding-bottom:4%;
 	}
    }
+   .important-font{
+	   font-size: 20px;
+   }
+   
+   .ap {
+	   margin: 20px;
+	}
 /*end of large screens*/
 
 

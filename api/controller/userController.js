@@ -60,7 +60,7 @@ class UserController {
       })
     }
     
-    //Defining values to display confirming their entry
+    //Defining new user
     const data = {
       Id:db.length+1,
       FirstName:req.body.firstName,
@@ -75,7 +75,7 @@ class UserController {
       Bio:req.body.bio
     }
  
-    //registering
+    //adding user to other users
     db.push(data);
 
     //defining token
@@ -94,37 +94,39 @@ class UserController {
   //end of signUp
   }
 
-
-
   //Login a user
   static async login( req, res) {
-    //forbdding important fields to be empty
-    if(!req.body.email) {
-      return res.status(400).josn({
-        success: 'false',
-        message: 'email is required'
+    //email and password as mandatory
+    if (!req.body.email) {
+      res.status(400).json({
+        status: '400',
+        message: 'Email is mandatory',
       });
-    } else if(!req.body.password) {
-      return res.status(400).json({
-        success: 'false',
-        message: 'password is required'
+    } else if (!req.body.password) {
+      res.status(400).json({
+        status: '400',
+        message: 'password is mandatory',
       });
+    } else {
+      //verfying if email and password match
+      const matchvalues = db.find(Users => Users.email === req.body.email && Users.password === req.body.password);
+        if (matchvalues) {
+          //defining token
+          const token = jwt.sign({ email: req.body.email, password: req.body.password }, process.env.KEY, {
+            expiresIn: 86400, // expires in 24 hours
+          });
+          res.status(200).json({
+            status: '200',
+            message: 'User is successful login',
+            data: {token},
+          });
+        }
+        res.status(404).json({
+          status: '404',
+          message: 'Email and password does not match',
+        });
+      }
     }
-    const data = {
-    }
-    db.push(data);
-
-    //defining token
-    const token = jwt.sign({ email: data.email, password: data.password }, process.env.KEY, {
-      // expires in 24 hours
-      expiresIn: 86400, 
-    })
-    return res.status(200).json({
-      status:  200,
-      message: 'User is successfully logged in',
-      token
-    })
-  };
   
   //Change a user to a mentor.
   static async changeToMentor( req, res){
@@ -143,10 +145,15 @@ class UserController {
         success: 'false',
         message: 'user not found',
       });
+    }else  if (dataFound.role==="mentor"){
+      return res.status(404).json({
+        success: 'false',
+        message: 'user is already a mentor',
+      });
     }
 
     const data = {
-      id: dataFound.id,
+      id: id,
       lastName: req.body.lastName || dataFound.lastName,
       firstName: req.body.firstName || dataFound.firstName,
       email: req.body.email || dataFound.email,
@@ -165,29 +172,42 @@ class UserController {
     return res.status(201).json({
       status: 201,
       message: 'User account changed to mentor',
-      token:req.headers.token,
       data,
     });
   };
 
   //get all mentors
   static async getAllMentors(req, res) {
+    const mentors=[];
     db.forEach((user) => {
       if (user.role === "mentor") {
-        res.status(200).json({
-          status: '200',
-          user
-        });
+        mentors.push(user)
       }
     })
- }
+    res.status(200).json({
+      status: '200',
+      data:mentors
+    });
+  }
 
+  //get all mentors
+  static async getUsersOnly(req, res) {
+    const mentors=[];
+    db.forEach((user) => {
+      if (user.role === "mentee") {
+        mentors.push(user)
+      }
+    })
+    res.status(200).json({
+      status: '200',
+      data:mentors
+    });
+  }
    //get all users
    static async getAllUsers(req, res) {
     try {
       res.status(200).json({
         status: 200,
-        token:req.headers.token,
         data: db
       });
     }catch (error) {
@@ -199,11 +219,35 @@ class UserController {
   static async getMentor(req, res) {
     const id = parseInt(req.params.mentorId, 10);
     db.map((data) => {
-      if (data.id === id) {
+      /*** revise for enforce logic */
+      /*if (data.role==="mentee"){
+        return res.status(404).json({
+          success: 'false',
+          message: 'mentor does not exist',
+        });
+      }else */
+      if (data.id === id) {   
+        //defining mentor property
+        const specMentor = {
+          MentorId: data.id,
+          lastName: data.lastName,
+          firstName: data.firstName,
+          email: data.email,
+          password: data.password,
+          age: data.age,
+          sex: data.sex,
+          experience: data.experience,
+          address: data.address,
+          bio: data.bio,
+          occupation: data.occupation,
+          expertise: data.expertise,
+          role: "mentor"
+        };
+
         return res.status(200).json({
           status: 200,
           message: 'mentor retrieved successfully',
-          data,
+          specMentor,
         });
       } 
   });
@@ -219,42 +263,40 @@ class UserController {
     if(!req.body.mentorId) {
       return res.status(400).json({
         success: 'false',
-        message: 'mentorId name field cannot be empty'
+        message: 'mentorId is mandatory'
       })
 
     } else if(!req.body.questions) {
       return res.status(400).json({
         success: 'false',
-        message: 'questions name field cannot be empty'
+        message: 'questions mandatory'
       })
-
     }
     
-    //Defining values to display confirming their entry
+    //Define returning values
     const data = {
       sessionId:sess.length+1,
       mentorId:req.body.mentorId,
       menteeId:req.body.menteeId,
       questions:req.body.questions,
       menteeEmail:req.body.email,
-      status:req.body.status
+      status:"pending"
     }
     
     //returning values
     return res.status(201).json({
       status:  201,
-      message: 'User created successfully', 
-      token:req.headers.token,
+      message: 'session created successfully',
       data
     })
   };
 
-  //accept mentorship session request
+  //accept mentorship session 
   static async mentorAccept( req, res){
     const id = parseInt(req.params.sessionId, 10);
     let dataFound;
     let itemIndex;
-    db.map((data, index) => {
+    sess.map((data, index) => {
       if (data.id === id) {
         dataFound = data;
         itemIndex = index;
@@ -269,7 +311,7 @@ class UserController {
     }
 
     const data = {
-      sessionId: dataFound.id,
+      sessionId: id,
       mentorId: req.body.mentorId || dataFound.mentorId,
       questions: req.body.questions || dataFound.questions,
       status: "accept"
@@ -280,8 +322,7 @@ class UserController {
     return res.status(201).json({
       status: 201,
       message: 'mentorship session request accepted',
-      token:req.headers.token,
-      data,
+      data
     });
   };
 
@@ -396,14 +437,6 @@ class UserController {
   // delete sessions
   static async deleteSes(req, res) {
     const id = parseInt(req.params.sessionId, 10);
-    /*try {
-      res.status(200).json({
-        status: 200,
-        data: sess
-      });
-    }catch (error) {
-      console.log(error);
-    }*/
     db.map((data, index) => {
       if (data.id === id) {
          sess.splice(index, 1);

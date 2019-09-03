@@ -9,7 +9,7 @@ const router = Router();
 router.post('/auth/signup', db.signUp);
 
 //sign in
-router.post('/auth/signin', token, db.login);
+router.post('/auth/signin', db.login);
 
 //change a user to amentor
 router.patch('/user/:userId', token, db.changeToMentor);
@@ -17,10 +17,13 @@ router.patch('/user/:userId', token, db.changeToMentor);
 //Get all mentors
 router.get('/mentors', token, db.getAllMentors);
 
-//Get all users
-router.get('/users', token, db.getAllUsers);
+//Get users only
+router.get('/users', token, db.getUsersOnly);
 
-//Get all mentors
+//Get all users
+router.get('/all', token, db.getAllUsers);
+
+//Get a specific mentor
 router.get('/mentors/:mentorId', token, db.getMentor);
 
 //create  mentorship session request
