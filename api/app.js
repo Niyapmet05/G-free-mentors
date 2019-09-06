@@ -29,7 +29,7 @@ app.use((error, req, res, next) => {
   });
 });
 //defining port
-const PORT = 1000;
+const PORT = process.env.PORT || 1000;
 
 app.listen(PORT, () => {
   console.log(`server running on port ${PORT}`)

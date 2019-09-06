@@ -2,6 +2,7 @@
 const users =  [
   {
     id:1,
+    mentorId:1,
     firstName: "Aphrodis",
     lastName: "NIYOMURENGEZI",
     email: "niyomurengeziaphrodis@gmail.com",
@@ -13,10 +14,11 @@ const users =  [
     bio: "engineer",
     occupation: "developer",
     expertise: "high",
-    role:"mentee"
+    role:"mentor"
   },
   {
-    id:2,
+    id: 2,
+    adminId:2,
     firstName: "Pascal",
     lastName: "TUYISSHIME",
     email: "tuyishimepascal@gmail.com",
@@ -28,7 +30,7 @@ const users =  [
     bio: "engineer",
     occupation: "environmental",
     expertise: "world class",
-    role:"mentor"
+    role:"admin"
   },
   { 
     id:3,
