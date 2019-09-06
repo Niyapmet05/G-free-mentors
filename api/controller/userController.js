@@ -124,42 +124,39 @@ class UserController {
   //end of signUp
   }
   
-  
-  //Login a user
-  static login( req, res) {
-    //forbdding important fields to be empty
-    if(!req.body.email) {
-      return res.status(404).josn({
-        success: 'false',
-        message: 'email is required'
+   //Login a user
+   static async login( req, res) {
+    //email and password as mandatory
+    if (!req.body.email) {
+      res.status(400).json({
+        status: '400',
+        message: 'Email is mandatory',
       });
-    } else if(!req.body.password) {
-      return res.status(404).json({
-        success: 'false',
-        message: 'password is required'
+    } else if (!req.body.password) {
+      res.status(400).json({
+        status: '400',
+        message: 'password is mandatory',
       });
-     }else{
-      const matchValue = db.find(User=> User.email === req.body.email && User.password === req.body.password);
-      if (matchValue) {
-        //defining token
-        const token = jwt.sign({ email: req.body.email, password: req.body.password }, process.env.KEY, {
-          // expires in 24 hours
-          expiresIn: 86400, 
+    } else {
+      //verfying if email and password match
+      const matchvalues = db.find(Users => Users.email === req.body.email && Users.password === req.body.password);
+        if (matchvalues) {
+          //defining token
+          const token = jwt.sign({ email: req.body.email, password: req.body.password }, process.env.KEY, {
+            expiresIn: 86400, // expires in 24 hours
+          });
+          res.status(200).json({
+            status: '200',
+            message: 'User is successful login',
+            data: {token},
+          });
+        }
+        res.status(404).json({
+          status: '404',
+          message: 'Email and password does not match',
         });
-        res.status(200).json({
-        status:  200,
-        message: 'User is successfully logged in',
-        token: token
-        });
-      
       }
-      res.status(404).json({
-        status:  404,
-        message: 'email and password does not match',
-      });
     }
-    
-  }
   /*
     // checking admin
     static admin(req, res) {
@@ -363,7 +360,6 @@ class UserController {
       }
     })
   }
-
   static mentor(){
     this.permit = 'mentor';
     this.perm(req,res);
@@ -404,7 +400,6 @@ class UserController {
         success: 'false',
         message: 'You are not a mentee',
       });
-
     } */
       //Defining new user
       const data = {

@@ -49,7 +49,7 @@ router.get('/sessions', token, sess.getMentorSessions);
 router.post('/sessions/:sessionId/review', token, sessReview.SessionReview);
 
 //Get mentor sessions
-router.get('/sessions/review', token, sessReview.getSessionsReview);
+//router.get('/sessions/review', token, sessReview.getSessionsReview);
 
 //delete session
 router.delete('/sessions/:sessionId/review', token, sess.deleteSes);
