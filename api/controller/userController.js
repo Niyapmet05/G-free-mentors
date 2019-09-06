@@ -95,6 +95,7 @@ class UserController {
  
       db.push(data);
 
+
     //defining token
     const token = jwt.sign({ email: data.email, password: data.password }, process.env.KEY, {
       // expires in 24 hours
@@ -123,9 +124,11 @@ class UserController {
     })
   //end of signUp
   }
+
   
    //Login a user
    static async login( req, res) {
+
     //email and password as mandatory
     if (!req.body.email) {
       res.status(400).json({
@@ -190,10 +193,12 @@ class UserController {
         success: 'false',
         message: 'user not found',
       });
+
     }else  if (dataFound.role!=="mentee"){
       return res.status(409).json({
         success: 'false',
         message: 'You cannot change its role',
+
       });
     }
 
@@ -209,6 +214,7 @@ class UserController {
       bio: dataFound.bio,
       occupation: dataFound.occupation,
       expertise: dataFound.expertise,
+
       role: "mentor"
     };
 
@@ -217,7 +223,6 @@ class UserController {
     return res.status(201).json({
       status: 201,
       message: 'User account changed to mentor',
-      //data,
     });
   };
 
@@ -235,27 +240,19 @@ class UserController {
     });
   }
 
-  //get users without mentors
-  static  getUsersOnly(req, res) {
-    const mentees=[];
+  //get all mentors
+  static async getUsersOnly(req, res) {
+    const mentors=[];
     db.forEach((user) => {
       if (user.role === "mentee") {
-        mentees.push(user)
+        mentors.push(user)
       }
     })
     res.status(200).json({
       status: '200',
-      data:mentees
+      data:mentors
     });
-    //check response here
-    if(mentees==""){
-      res.status(404).json({
-        status: '404',
-        message:"No user found" 
-      })
-    }
   }
-
    //get all users
    static  getAllUsers(req, res) {
     try {
@@ -276,6 +273,7 @@ class UserController {
         //defining mentor property
         const specMentor = {
           MentorId: id,
+
           lastName: data.lastName,
           firstName: data.firstName,
           email: data.email,
@@ -287,13 +285,16 @@ class UserController {
           bio: data.bio,
           occupation: data.occupation,
           expertise: data.expertise,
+
           role: data.role,
+
         };
 
         return res.status(200).json({
           status: 200,
           message: 'mentor retrieved successfully',
           mentor: specMentor,
+
         });
       } 
   });
@@ -383,16 +384,17 @@ class UserController {
     if(!bod.mentorId) {
       return res.status(404).json({
         success: 'false',
-        message: 'mentorId cannot be empty'
+        message: 'mentorId is mandatory'
       })
     } else if(!bod.questions) {
       return res.status(404).json({
         success: 'false',
-        message: 'questions cannot be empty'
-      })
+        message: 'questions mandatory'
 
+      })
     }
     
+
     /*const menteeFound = db.find(User=> User.menteeEmail === req.decodedToken.email);
     console.log(menteeFound);
     if(!menteeFound){
@@ -439,11 +441,14 @@ class UserController {
   //accept mentorship session 
   static  mentorAccept( req, res){
     UserController.mentor(req,res)
+
     const id = parseInt(req.params.sessionId, 10);
     let dataFound;
     let itemIndex;
     sess.map((data, index) => {
+
       if (data.sessionId === id) {
+
         dataFound = data;
         itemIndex = index;
       }
@@ -473,8 +478,10 @@ class UserController {
 
     const data = {
       sessionId: id,
+
       mentorId: dataFound.mentorId,
       questions: dataFound.questions,
+
       status: "accept"
     };
 
@@ -599,6 +606,7 @@ class UserController {
       data
     })
   };
+
   
   //get users sessions
   static  getSessionsReview(req, res) {
@@ -615,6 +623,7 @@ class UserController {
   // delete review
   static  deleteSes(req, res) {
     UserController.admin(req,res);
+
     const id = parseInt(req.params.sessionId, 10);
     db.map((data, index) => {
       if (data.id === id) {

@@ -12,6 +12,7 @@ describe('Sign Up', () => {
   describe('POST /api/v1/auth/signup', () => {
     // test 1
     it('should display  409 status', (done) => {
+
       chai.request(app)
         .post(`${vers}/auth/signup`)
         .send({
