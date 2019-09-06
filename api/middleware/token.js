@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 const checkToken = (req, res, next) => {
-  //creating token
+  //checking token in parmaters
   const token = req.headers['token'] || req.body['token'] || null;
 
   if (!token) {
@@ -9,7 +9,7 @@ const checkToken = (req, res, next) => {
       error: 'Please, Authentication is required!',
     });
   }
-  //verfying token
+  //verfying token 
   jwt.verify(token, process.env.KEY, (err, decoded) => {
     if (err) {
       return res.status(500).json({

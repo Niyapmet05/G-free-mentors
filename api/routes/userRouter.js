@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import db from '../controller/UserController';
 import sess from '../controller/UserController';
+import sessReview from '../controller/UserController';
 import token from '../middleware/token';
 
 const router = Router();
@@ -18,7 +19,7 @@ router.patch('/user/:userId', token, db.changeToMentor);
 router.get('/mentors', token, db.getAllMentors);
 
 //Get users only
-router.get('/users', token, db.getUsersOnly);
+//router.get('/users', token, db.getUsersOnly);
 
 //Get all users
 router.get('/all', token, db.getAllUsers);
@@ -29,6 +30,9 @@ router.get('/mentors/:mentorId', token, db.getMentor);
 //create  mentorship session request
 router.post('/sessions', token, sess.createMentoshipReq);
 
+//Get all sessions
+//router.get('/session', token, sess.getAllSessions);
+
 //accept mentorship session request
 router.patch('/sessions/:sessionId/accept', token, sess.mentorAccept);
 
@@ -36,13 +40,16 @@ router.patch('/sessions/:sessionId/accept', token, sess.mentorAccept);
 router.patch('/sessions/:sessionId/reject', token, sess.mentorReject);
 
 //Get user sessions
-router.get('/sessions', token, sess.getUserSessions);
+//router.get('/sessions', token, sess.getUserSessions);
 
 //Get mentor sessions
 router.get('/sessions', token, sess.getMentorSessions);
 
 //accept mentorship session request
-router.post('/sessions/:sessionId/review', token, sess.SessionReview);
+router.post('/sessions/:sessionId/review', token, sessReview.SessionReview);
+
+//Get mentor sessions
+//router.get('/sessions/review', token, sessReview.getSessionsReview);
 
 //delete session
 router.delete('/sessions/:sessionId/review', token, sess.deleteSes);
