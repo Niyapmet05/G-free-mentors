@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha --require @babel/register test/test.js",
     "dev": "nodemon app.js --exec babel-node --",
-    "start": "babel-node .app.js",
+    "start": "babel-node ./api/app.js",
     "coverage": "npm run test && nyc report --reporter=text-lcov | coveralls",
     "cover": "set NODE_ENV=test&& istanbul cover ./node_modules/mocha/bin/_mocha -- --require  @babel/register test/test.js",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
