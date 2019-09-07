@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "mocha --require @babel/register test/test.js",
-    "start": "nodemon app.js --exec babel-node --",
+    "dev": "nodemon app.js --exec babel-node --",
+    "start": "babel-node .app.js",
     "coverage": "npm run test && nyc report --reporter=text-lcov | coveralls",
     "cover": "set NODE_ENV=test&& istanbul cover ./node_modules/mocha/bin/_mocha -- --require  @babel/register test/test.js",
     "coveralls": "npm run cover -- --report lcovonly && cat ./coverage/lcov.info | coveralls"
@@ -30,6 +31,7 @@
     "body-parser": "^1.19.0",
     "chai": "^4.2.0",
     "chai-http": "^4.3.0",
+    "coverage": "^0.4.1",
     "dotenv": "^8.1.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
